@@ -8,7 +8,6 @@ on:
     branches:
       - main
 
-
 jobs:
   scrivi-file:
     runs-on: ubuntu-latest
@@ -16,22 +15,22 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      
+
       - name: Scrivi file
         run: |
           echo "Ciao, sono il primo job!" > file.txt
-          echo "File scritto con successo!"ù
-        
+          echo "File scritto con successo!"
+
       - name: Upload artefatto
         uses: actions/upload-artifact@v4
         with:
           name: generated-file
           path: file.txt
 
-  check-file:
+  leggi-file:
     needs: scrivi-file
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Download artefatto
         uses: actions/download-artifact@v4
