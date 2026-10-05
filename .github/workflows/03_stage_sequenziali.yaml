@@ -28,10 +28,21 @@ jobs:
           name: generated-file
           path: file.txt
 
-  # check-file:
-  #   needs: scrivi-file
-  #   runs-on: ubuntu-latest
+  check-file:
+    needs: scrivi-file
+    runs-on: ubuntu-latest
     
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v3
+    steps:
+      - name: Download artefatto
+        uses: actions/download-artifact@v4
+          with:
+            name: generated-file
+
+      - name: Verifica esistenza file
+        run: |
+          if [ -f "file.txt" ]; then
+            echo "Il file esiste!"
+          else
+            echo "Il file non esiste!"
+            exit 1
+          fi
