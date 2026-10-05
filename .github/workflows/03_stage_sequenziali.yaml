@@ -46,3 +46,7 @@ jobs:
             echo "Il file non esiste!"
             exit 1
           fi
+
+      - name: Lettura del file
+        run: |
+          cat file.txt
